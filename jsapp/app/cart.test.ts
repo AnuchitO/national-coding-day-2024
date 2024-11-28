@@ -13,3 +13,15 @@ import { subtotalPrice } from "./cart";
 /* console.log(subtotalPrice(999.99, 1).toFixed(2) === "999.99" ? "✅ PASS" : "❌ FAIL") */
 
 // I want to call it like expect(..).toEqual(..)
+
+function expect(actual: any) {
+  return {
+    toEqual: (expected: any) => {
+      if (actual === expected) {
+        console.log(" ✅ PASS")
+      } else {
+        console.log(` ❌ FAIL: want ${expected} but got ${actual}`)
+      }
+    }
+  }
+}
