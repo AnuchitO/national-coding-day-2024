@@ -17,3 +17,12 @@ function test(title: string, callback: () => void) {
   callback();
   console.groupEnd();
 }
+
+
+test("error when product name or product id is missing", () => {
+  try {
+    getProductPrice(????, "", "")
+  } catch (error) {
+    expect(error.message).toEqual("Product name and product id are required")
+  }
+})
