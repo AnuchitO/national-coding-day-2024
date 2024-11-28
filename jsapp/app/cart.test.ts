@@ -31,3 +31,9 @@ function expect(actual: any) {
 /* expect(subtotalPrice(999.99, 1).toFixed(2)).toEqual("999.99") */
 
 // can we add more context and groupping to the test?
+
+function test(title: string, callback: () => void) {
+  console.group(title);
+  callback();
+  console.groupEnd();
+}
