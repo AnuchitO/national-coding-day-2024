@@ -86,3 +86,11 @@ test("get product price", () => {
   expect(actual).toEqual(999.99)
 })
 
+
+test("demo fake: get product not found", () => {
+  try {
+    getProductPrice(fakeFinder, "Laptop", "LAPTOP-321")
+  } catch (error) {
+    expect(error.message).toEqual("Product not found")
+  }
+})
