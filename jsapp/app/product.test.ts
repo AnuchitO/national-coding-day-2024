@@ -19,13 +19,14 @@ function test(title: string, callback: () => void) {
 }
 
 
+// Dummy: just make the code compile
 test("error when product name or product id is missing", () => {
-  const anything = {
+  const dummy = {
     search: null
   }
 
   try {
-    getProductPrice(anything, "", "")
+    getProductPrice(dummy, "", "")
   } catch (error) {
     expect(error.message).toEqual("Product name and product id are required")
   }
