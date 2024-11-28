@@ -97,9 +97,11 @@ test("demo fake: get product not found", () => {
 
 
 // Spy: keep track of the calls made to the function
-test("search should have been called once", () => {
+it("search should have been called once", () => {
+  let spyCount = 0
   const stub = {
     search: (productName: string, productId: string) => {
+      spyCount++
       return { productName, productId, price: 999.99 }
     }
   }
@@ -107,4 +109,5 @@ test("search should have been called once", () => {
   const actual = getProductPrice(stub, "Laptop", "LAPTOP-123")
 
   expect(actual).toEqual(999.99)
+  expect(spyCount).toEqual(1)
 })
