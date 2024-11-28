@@ -39,5 +39,9 @@ function test(title: string, callback: () => void) {
 }
 
 test("should calculate subtotal price correctly", () => {
-  expect(subtotalPrice(999.99, 3).toFixed(2)).toEqual("2999.97")
+  const want = "2999.97"
+
+  const actual = subtotalPrice(999.99, 3).toFixed(2)
+
+  expect(actual).toEqual(want)
 })
