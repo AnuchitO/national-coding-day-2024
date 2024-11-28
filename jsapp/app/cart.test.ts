@@ -25,3 +25,7 @@ function expect(actual: any) {
     }
   }
 }
+
+expect(subtotalPrice(999.99, 3).toFixed(2)).toEqual("2999.97")
+expect(subtotalPrice(999.99, 2).toFixed(2)).toEqual("1999.98")
+expect(subtotalPrice(999.99, 1).toFixed(2)).toEqual("999.99")
