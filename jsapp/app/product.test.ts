@@ -31,3 +31,17 @@ test("error when product name or product id is missing", () => {
     expect(error.message).toEqual("Product name and product id are required")
   }
 })
+
+test("error product not found", () => {
+  const stub = {
+    search: (productName: string, productId: string) => {
+      return null
+    }
+  }
+
+  try {
+    getProductPrice(stub, "Laptop", "LAPTOP-123")
+  } catch (error) {
+    expect(error.message).toEqual("Product not found")
+  }
+})
