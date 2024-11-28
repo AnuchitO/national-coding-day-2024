@@ -177,3 +177,18 @@ test("search should have been called once", () => {
   expect(actual).toEqual(999.99)
   expect(spy).toHaveBeenCalled()
 })
+
+test("should call search with productName and productId", () => {
+  const stub = {
+    search: (productName: string, productId: string) => {
+      return { productName, productId, price: 999.99 }
+    }
+  }
+
+  const spy = spyOn(stub, "search")
+
+  const actual = getProductPrice(spy as any, "Laptop", "LAPTOP-123")
+
+  expect(actual).toEqual(999.99)
+  expect(spy).toHaveBeenCalledWith("Laptop", "LAPTOP-123")
+})
