@@ -64,3 +64,25 @@ test("get product price", () => {
   const actual = getProductPrice(stub, "Laptop", "LAPTOP-123")
   expect(actual).toEqual(999.99)
 })
+
+// Fake: simplified version of the real implementation
+const fakeFinder = {
+  search: (productName: string, productId: string) => {
+    if (productName === "Laptop" && productId === "LAPTOP-123") {
+      return {
+        productName: "Laptop",
+        productId: "LAPTOP-123",
+        price: 999.99
+      }
+    }
+
+    return null
+  }
+}
+
+test("get product price", () => {
+  const actual = getProductPrice(fakeFinder, "Laptop", "LAPTOP-123")
+
+  expect(actual).toEqual(999.99)
+})
+
