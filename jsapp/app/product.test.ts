@@ -126,3 +126,8 @@ it("should call search with productName and productId", () => {
   expect(actual).toEqual(999.99)
   expect(spyArgs).toEqual(["Laptop", "LAPTOP-123"])
 })
+
+
+// Challange: how to make spy more fancy?
+// - expect(spy).toHaveBeenCalled()
+// - expect(spy).toHaveBeenCalledWith("Laptop", "LAPTOP-123")
