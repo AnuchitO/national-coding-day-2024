@@ -46,3 +46,21 @@ test("error product not found", () => {
     expect(error.message).toEqual("Product not found")
   }
 })
+
+// Stub: return a canned value not null
+test("get product price", () => {
+  const product: Product = {
+    productName: "Laptop",
+    productId: "LAPTOP-123",
+    price: 999.99
+  }
+
+  const stub = {
+    search: (productName: string, productId: string) => {
+      return product
+    }
+  }
+
+  const actual = getProductPrice(stub, "Laptop", "LAPTOP-123")
+  expect(actual).toEqual(999.99)
+})
