@@ -145,3 +145,35 @@ test("should call search with productName and productId", () => {
 // Challange: how to make spy more fancy?
 // - expect(spy).toHaveBeenCalled()
 // - expect(spy).toHaveBeenCalledWith("Laptop", "LAPTOP-123")
+
+function spyOn(obj: any, method: string = "search") {
+  let spy = {
+    called: 0,
+    args: []
+  }
+
+  const originalMethod = obj[method]
+
+  spy[method] = (...args: any[]) => {
+    spy.called++
+    spy.args = args
+    return originalMethod(...args)
+  }
+
+  return spy
+}
+
+test("search should have been called once", () => {
+  const stub = {
+    search: (productName: string, productId: string) => {
+      return { productName, productId, price: 999.99 }
+    }
+  }
+
+  const spy = spyOn(stub, "search")
+
+  const actual = getProductPrice(spy as any, "Laptop", "LAPTOP-123")
+
+  expect(actual).toEqual(999.99)
+  expect(spy).toHaveBeenCalled()
+})
