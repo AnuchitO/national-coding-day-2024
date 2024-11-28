@@ -3,7 +3,7 @@ import { getProductPrice, Product } from "./product";
 function expect(actual: any) {
   return {
     toEqual: (expected: any) => {
-      if (actual === expected) {
+      if (JSON.stringify(actual) === JSON.stringify(expected)) {
         console.log(" ✅ PASS")
       } else {
         console.log(` ❌ FAIL: want ${expected} but got ${actual}`)
@@ -110,4 +110,19 @@ it("search should have been called once", () => {
 
   expect(actual).toEqual(999.99)
   expect(spyCount).toEqual(1)
+})
+
+it("should call search with productName and productId", () => {
+  let spyArgs: any = []
+  const stub = {
+    search: (productName: string, productId: string) => {
+      spyArgs = [productName, productId]
+      return { productName, productId, price: 999.99 }
+    }
+  }
+
+  const actual = getProductPrice(stub, "Laptop", "LAPTOP-123")
+
+  expect(actual).toEqual(999.99)
+  expect(spyArgs).toEqual(["Laptop", "LAPTOP-123"])
 })
