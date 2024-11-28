@@ -8,6 +8,20 @@ function expect(actual: any) {
       } else {
         console.log(` ❌ FAIL: want ${expected} but got ${actual}`)
       }
+    },
+    toHaveBeenCalled: () => {
+      if (actual.called === 1) {
+        console.log(" ✅ PASS")
+      } else {
+        console.log(` ❌ FAIL: should call once but got called ${actual.called} times`)
+      }
+    },
+    toHaveBeenCalledWith: (...args: any[]) => {
+      if (JSON.stringify(actual.args) === JSON.stringify(args)) {
+        console.log(" ✅ PASS")
+      } else {
+        console.log(` ❌ FAIL: want ${args} but got ${actual.args}`)
+      }
     }
   }
 }
