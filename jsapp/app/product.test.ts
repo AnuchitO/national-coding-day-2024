@@ -32,6 +32,7 @@ test("error when product name or product id is missing", () => {
   }
 })
 
+// Stub: return a canned value
 test("error product not found", () => {
   const stub = {
     search: (productName: string, productId: string) => {
