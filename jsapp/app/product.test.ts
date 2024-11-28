@@ -126,7 +126,7 @@ it("search should have been called once", () => {
   expect(spyCount).toEqual(1)
 })
 
-it("should call search with productName and productId", () => {
+test("should call search with productName and productId", () => {
   let spyArgs: any = []
   const stub = {
     search: (productName: string, productId: string) => {
