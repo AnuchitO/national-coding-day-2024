@@ -21,9 +21,7 @@ function test(title: string, callback: () => void) {
 
 test("error when product name or product id is missing", () => {
   const anything = {
-    search: (productName: string, productId: string): Product | null => {
-      return null
-    }
+    search: null
   }
 
   try {
