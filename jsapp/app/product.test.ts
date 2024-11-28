@@ -197,3 +197,21 @@ test("should call search with productName and productId", () => {
 // Mocks: are pre-programmed with expectations which form a specification of the calls they are expected to receive.
 // Mocks are used to define expectations about function calls.
 // Spies are used to track function calls without pre-setting expectations.
+
+test("search should have call with expectations in mock", () => {
+  const stub = {
+    search: (productName: string, productId: string) => {
+      return { productName: "AnuchitO", productId: "Nong", price: 888.88 }
+    }
+  }
+
+  const mk = mock(stub)
+  mk.expect("search")
+    .withArgs("Laptop", "LAPTOP-123")
+    .andReturn({ productName: "Laptop", productId: "LAPTOP-123", price: 999.99 })
+
+  const actual = getProductPrice(mk, "Laptop", "LAPTOP-123")
+
+  expect(actual).toEqual(999.99)
+  expect(mk.Verify()).toEqual(true)
+})
