@@ -198,6 +198,56 @@ test("should call search with productName and productId", () => {
 // Mocks are used to define expectations about function calls.
 // Spies are used to track function calls without pre-setting expectations.
 
+function mock(obj: any) {
+  const expectations: { method: string, args: any[], returnValue: any }[] = [];
+  const calls: { method: string, args: any[] }[] = [];
+
+  // Create a mock for the given object and method
+  const mockObj = {
+    // Define the 'search' method on the mock object
+    search: (...args: any[]) => {
+      calls.push({ method: 'search', args });
+
+      // Find if the call matches any expectation
+      const expectation = expectations.find(exp =>
+        exp.method === 'search' && JSON.stringify(exp.args) === JSON.stringify(args)
+      );
+
+      // If a matching expectation is found, return the predefined return value
+      if (expectation) {
+        return expectation.returnValue;
+      } else {
+        // If no matching expectation, just return undefined (or could throw an error)
+        throw new Error(`Unexpected call to search with arguments ${JSON.stringify(args)}`);
+      }
+    },
+
+    // Set up an expectation for the 'search' method
+    expect: (method: string) => ({
+      withArgs: (...expectedArgs: any[]) => ({
+        andReturn: (returnValue: any) => {
+          if (method === 'search') {
+            // Store the expectation for the 'search' method
+            expectations.push({ method, args: expectedArgs, returnValue });
+          }
+        }
+      })
+    }),
+
+    // Verify if all expectations were called with the correct arguments
+    Verify: () => {
+      return expectations.every((exp) => {
+        return calls.some((call) =>
+          call.method === exp.method && JSON.stringify(call.args) === JSON.stringify(exp.args)
+        );
+      });
+    }
+  };
+
+  return mockObj;
+}
+
+
 test("search should have call with expectations in mock", () => {
   const stub = {
     search: (productName: string, productId: string) => {
