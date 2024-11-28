@@ -192,3 +192,8 @@ test("should call search with productName and productId", () => {
   expect(actual).toEqual(999.99)
   expect(spy).toHaveBeenCalledWith("Laptop", "LAPTOP-123")
 })
+
+
+// Mocks: are pre-programmed with expectations which form a specification of the calls they are expected to receive.
+// Mocks are used to define expectations about function calls.
+// Spies are used to track function calls without pre-setting expectations.
