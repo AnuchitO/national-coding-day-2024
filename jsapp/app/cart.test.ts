@@ -45,3 +45,12 @@ test("should calculate subtotal price correctly", () => {
 
   expect(actual).toEqual(want)
 })
+
+// Challenge: write your own test with you own style for the following functions:
+// 1. test discountedPrice function
+// 2. products.ts getProductPrice function
+
+// Optional Challenge: write tests for the following functions:
+// - test totalPrice function
+// - test totalProducts function
+// - test totalItems function
