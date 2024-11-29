@@ -17,7 +17,17 @@ simplification for test doubles what is the similarity and difference between th
 | Spy              | record information               | record calls                | record calls     | when the code requires tracking of calls                       |
 | Mock             | pre-programmed with expectations | pre-programmed expectations | fail test        | when the code requires a specific sequence of calls            |
 
-Dummy is a no-op, while Spy records calls.
-Fake is a simplified implementation, while Stub provides canned answers.
-Spy is hand-crafted, while Mock is pre-programmed with expectations.
+- Dummy is a no-op, while Spy records calls.
+- Fake is a simplified implementation, while Stub provides canned answers.
+- Spy is hand-crafted, while Mock is pre-programmed with expectations.
+
+
+how to run:
+```bash
+ npm run ts app/cart.test.ts
+```
+
+```bash
+bun test --test-name-pattern=product --watch
+```
 
